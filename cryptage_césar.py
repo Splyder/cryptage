@@ -3,7 +3,7 @@ Fait par Splyder, le 18/09/2021
 '''
 alphabet=[]
 # Ouvrir le fichier en lecture seule
-file = open('données/alphabet.txt', "r")
+file = open("alphabet.txt", "r")
 for line in file:
     #remplit la liste nommé alphabet des lettres de chaque lignes du fichier alphabet.txt
     #.rstrip() permet de supprimer les retours à la ligne
