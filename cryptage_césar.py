@@ -1,7 +1,8 @@
 '''
-Programme ecrit par Gregoire Otto le 18/09/2021
+Programme ecrit par Gregoire Otto le 17/09/2021
 Dernière modification le 19/09/2021
 '''
+import os
 
 alphabet=[]
 # Ouvrir le fichier en lecture seule
@@ -13,18 +14,23 @@ for line in file:
 #on referme le fichier
 file.close()
 
-
-def césar(clef, message):
-    condition=False
-    while condition==False:
-        clef=str(clef)
-        if clef.isdigit()==False and clef[0]!="-":
+def verification_clef(clef):
+    condition = False
+    while condition == False:
+        clef = str(clef)
+        if clef.isdigit() == False and clef[0] != "-":
             clef = input("Clef invalide. Entrez un nombre entier")
-        elif clef[1:].isdigit() == False and str(clef[0])=="-":
+        elif clef[1:].isdigit() == False and str(clef[0]) == "-":
             clef = input("Clef invalide. Entrez un nombre entier")
         else:
-            condition=True
-            clef=int(clef)
+            condition = True
+            clef = int(clef)
+            return clef
+
+
+def cryptage_césar(clef, message):
+
+    clef=verification_clef(clef)
 
     #Change une lettre par une autre selon la clef
     def lettre_chiffré(lettre,liste,clef):
@@ -41,3 +47,22 @@ def césar(clef, message):
         message_chiffre += lettre_chiffré(lettre,alphabet,clef)
 
     return(message_chiffre)
+
+def cryptage_césar_fichier(clef,nom_fichier,nom_fichier_crypter="crypter.txt"):
+    clef=verification_clef(clef)
+    nom_fichier=str(nom_fichier)
+    nom_fichier_crypter=str(nom_fichier_crypter)
+    f=open(str(nom_fichier),"rt")
+    liste=[]
+    for line in f:
+        liste.append(cryptage_césar(clef,line.rstrip()))
+    f.close()
+
+    if os.path.exists(nom_fichier_crypter)!=True:
+        f2 = open(nom_fichier_crypter, "xt")
+        f2.close()
+    f2=open(nom_fichier_crypter,"at")
+
+    for element in liste:
+        f2.write(element+"\n")
+        print(element)
