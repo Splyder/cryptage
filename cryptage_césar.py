@@ -1,9 +1,11 @@
 '''
-Fait par Splyder, le 18/09/2021
+Programme ecrit par Gregoire Otto le 18/09/2021
+Dernière modification le 19/09/2021
 '''
+
 alphabet=[]
 # Ouvrir le fichier en lecture seule
-file = open("alphabet.txt", "r")
+file = open('données/alphabet.txt', "r")
 for line in file:
     #remplit la liste nommé alphabet des lettres de chaque lignes du fichier alphabet.txt
     #.rstrip() permet de supprimer les retours à la ligne
@@ -13,12 +15,16 @@ file.close()
 
 
 def césar(clef, message):
-
-    #vérifie si la clef rentrée est un nombre entier positif
-    while str(clef).isdigit()==False:
-        #si la clef n'est pas un entier positif, le script demande une nouvelle clef
-        clef=input("Clef invalide. Entrez un nombre entier")
-    clef=int(clef)
+    condition=False
+    while condition==False:
+        clef=str(clef)
+        if clef.isdigit()==False and clef[0]!="-":
+            clef = input("Clef invalide. Entrez un nombre entier")
+        elif clef[1:].isdigit() == False and str(clef[0])=="-":
+            clef = input("Clef invalide. Entrez un nombre entier")
+        else:
+            condition=True
+            clef=int(clef)
 
     #Change une lettre par une autre selon la clef
     def lettre_chiffré(lettre,liste,clef):
