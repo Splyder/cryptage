@@ -1,5 +1,5 @@
 '''
-Programme ecrit par Gregoire Otto le 17/09/2021
+Fait par Splyder, le 17/09/2021
 Dernière modification le 20/09/2021
 '''
 import os
