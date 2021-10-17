@@ -15,13 +15,11 @@ for line in file:
 #on referme le fichier.
 file.close()
 
-def verification_cle(cle):
-
+def verification_cle(cle:int)->int:
+    #convertit la cle en string pour pouvoir ensuite utiliser la fonction .isdigit().
+    cle = str(cle)
     condition=False
     while condition == False:
-
-        #convertit la cle en string pour pouvoir ensuite utiliser la fonction .isdigit().
-        cle = str(cle)
 
         #si la cle n'est pas un entier positif ni un entier negatif.
         if cle.isdigit() == False and cle[0] != "-":
@@ -38,9 +36,9 @@ def verification_cle(cle):
             return clef
 
 
-def cryptage_cesar(cle, message):
+def cryptage_cesar(cle:int, message:str)->str:
 
-    clef=verification_cle(cle)
+    clef=verification_cle(int(cle))
 
     #Change une lettre par une autre selon la cle
     def chiffrage_lettre(lettre,liste,cle):
@@ -61,8 +59,8 @@ def cryptage_cesar(cle, message):
     #puis on renvoi le message crypte.
     return(message_chiffre)
 
-def cryptage_cesar_fichier(cle,nom_fichier,nom_fichier_crypter="crypter.txt"):
-    cle=verification_cle(cle)
+def cryptage_cesar_fichier(cle:int,nom_fichier:str,nom_fichier_crypter:str="crypter.txt")->None:
+    cle=verification_cle(int(cle))
     nom_fichier=str(nom_fichier)
     nom_fichier_crypter=str(nom_fichier_crypter)
     f=open(str(nom_fichier),"rt")
